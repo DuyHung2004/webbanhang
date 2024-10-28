@@ -1,0 +1,52 @@
+.container{
+   .table_cart{
+    overflow-y:auto ;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table{
+        width: 100%;
+        tr{
+            border-bottom: 1px solid #dddddd;
+            td{
+                padding: 8px;
+                text-align: center;
+            }
+        }
+        th{
+           border: 1px solid #dddddd;
+           padding: 8px;
+           text-align: center;
+        }
+        img{
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+        .button_remove{
+            cursor: pointer;
+        }
+    }
+    .button_continue{
+        display: flex;
+        text-align: center;
+        margin: auto;
+        border: 2px solid #dddddd;
+        width: 100px;
+        height: 50px;
+        margin-top: 50px;
+        background-color:cornflowerblue;
+        align-items: center;
+        justify-content: center;
+        a{
+            text-decoration: none;
+            font-size: 20px;
+        }
+    }
+   }
+   .total_money_order{
+    text-align: right;
+    margin-top: 50px;
+    margin-right: 100px;
+   }
+}

@@ -1,0 +1,65 @@
+@use "sass:map";
+@import "style/pages/all";
+.featured_item{
+    margin-bottom: 50px;
+    .featured_item_pic{
+        height:270px ;
+        position: relative;
+        background-position:center ;
+        background-size: contain;
+        background-repeat: no-repeat;
+        overflow: hidden;
+    }
+    ul{
+        position: absolute;
+        left: 0;
+        bottom: -40%;
+        width: 100%;
+        text-align: center;
+        transition: all 0.5s;
+        li{
+            list-style: none;
+            display: inline-block;
+            margin-right: 10px;
+            &:hover{
+                svg{
+                    background-color: beige;
+                    border-color:beige ;
+                    color:brown;
+                    transform: rotate(360deg);
+                }
+            }
+            svg{
+                padding: 10px;
+                height: 20px;
+                width: 20px;
+                border: 1px solid #ffffff;
+                transition: all 0.5s;
+                border-radius: 20px;
+            }
+        }
+    }
+    .featured_item_pic:hover{
+       ul{
+        bottom:20%;
+       }
+    }
+    .featured_item_text{
+        text-align: center;
+        h6{
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: 400;
+            a{
+                color:  map.get($theme-colors,"main");
+                text-decoration: none ;
+            }
+        }
+        h5{
+            font-size: 20px;
+            font-weight: 700;
+            color:  map.get($theme-colors,"main");
+            margin-top: 5px;
+        }
+    }
+}

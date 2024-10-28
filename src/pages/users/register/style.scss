@@ -1,0 +1,74 @@
+@use "sass:map";
+@import "style/pages/all";
+.login_form{
+    margin: auto;
+    background-color:beige !important;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 500px;
+    border: 1px solid ;
+    align-items: center;
+    justify-content:center ;
+    margin-bottom: 50px !important;
+    h2{
+        text-align: center;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        color:cadetblue;
+        .form-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        div{
+            width: 400px;
+            position: relative;
+            label{
+                font-weight: bold;
+                font-size: 16px;
+                padding-left: 30px;
+                padding-right: 30px;
+                flex: 1;
+                text-align: left;
+            }
+            input{
+                flex: 2;
+                padding: 5px;
+                font-size: 16px;
+                border: 1px solid ;
+                justify-content: center;
+                align-items: center;
+                border-radius: 10px;
+            }
+        }
+        .button_form{
+            width: 100px; 
+            height: 30px;
+            margin: 30px auto; 
+            
+        }
+        .text_form{
+            display: flex;
+            justify-content: space-between;
+            .login {
+                text-align: center;
+            }
+        }
+    }
+}
+.login_icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    a{
+        padding: 5px;
+        font-size: 20px;
+        text-decoration: none;
+
+    }
+}

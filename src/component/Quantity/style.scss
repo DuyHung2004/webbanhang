@@ -1,0 +1,37 @@
+@use "sass:map";
+@import "style/pages/all";
+.quantity_container{
+    color:cadetblue;
+    display: flex;
+    gap: 20px;
+    .quantity{
+        display: flex;
+        align-items: center;
+        span{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        span, input{
+            width: 40px;
+            height: 30px;
+            background: rgb(5, 238, 141);
+            cursor: pointer;
+            font-size: 20px;
+        }
+        input{
+            border: 1px solid;
+            border-radius: 3px;
+        }
+    }
+    button{
+        background-color: red;
+        border: 0.5px solid white;
+        border-radius: 5px;
+        width: 100px;
+        height: 55px;
+        font-size: 15px;
+        cursor: pointer;
+    }
+}

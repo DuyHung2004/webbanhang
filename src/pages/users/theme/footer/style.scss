@@ -1,0 +1,62 @@
+.footer{
+    background-color: #F3F6FA;
+    padding-top: 70px;
+    padding-bottom: 0;
+    margin-top: 100px;
+    .footer_about{
+        margin-bottom:30px ;
+        .footer_about_phone{
+            margin-bottom: 13px;
+            display: inline-block;
+        }
+         ul li{
+            font-size: 16px;
+            color:black;
+            list-style: none;
+            line-height: 20px;
+        }
+    }
+    .footer_widget{
+       
+        ul{
+            float: left;
+            width: 50%;
+            li{
+                list-style: none;
+                a{
+                    font-size: 16px;
+                    text-decoration: none ;
+                    line-height: 32px;
+
+                }
+            }
+        } 
+        p{
+            font-weight: 900;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }   
+        form{
+            position: relative;
+            margin-bottom: 30px;
+            input{
+                font-size: 16px;
+                padding-left: 20px;
+            height: 46px;
+            border: 1px solid #ededed;
+            }
+            div{
+                button{
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    height: 100%;
+                    background-color: aquamarine;
+                    border: none;
+                    padding: 0 26px;
+                    min-width: max-content;
+                }
+            }
+        }  
+    }
+}
