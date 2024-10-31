@@ -1,0 +1,21 @@
+
+  .tab-bar {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    width: 90%;
+    height: 100px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+  
+    .tab {
+      border: solid 0.01px #878A8C;
+      text-align: center;
+      position: relative;
+      cursor: pointer;
+      height: 100%;
+      width: 20%;
+    }
+  }
+  

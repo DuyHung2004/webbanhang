@@ -10,6 +10,9 @@ export const ROUTERS={
         PAYMENT:"/thanh-toan",
         HISTORY:"/history",
         ORDERDETAIL:"/don-hang/:id",
+    },
+    ADMIN:{
+        HOME:"/admin",
+        ORDER:"/admin/orders"
     }
-
 }
