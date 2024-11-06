@@ -1,8 +1,21 @@
-.form_edit_user{
+.form_edit{
+    font-size: 20px;
+    width: 40%;
+    margin: auto;
+    button{
+        margin: auto ;
+        margin-left: 60px;
+       padding: 20px;
+        border-radius: 5px;
+        background-color: cadetblue;
+        color: white;
+        cursor: pointer;
+       }
+    form{
         display: flex;
         flex-direction: column;
         color: cadetblue;
-       .text_edit_user{
+       .text_edit_product{
         margin-bottom: 20px;
         text-align: center;
         display: flex;
@@ -27,3 +40,9 @@
         cursor: pointer;
        }
     }
+    .image_add{
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+    }
+}

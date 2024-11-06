@@ -21,6 +21,30 @@ const ListUser = ()=>{
             
         })
     },[])
+    const navigate = useNavigate();
+    const EditUser=(id)=>{
+        return ()=>{
+            navigate(ROUTERS.ADMIN.EDITUSER.replace(':id',id))
+        }
+    }
+    const BanUser= async (id)=>{
+        axios.put(`http://localhost:8080/identity/users/update/${id}`,{},{
+            headers: {
+                'Authorization': `Bearer ${Cookies.get('token')}`
+            }
+        })
+        .then((response)=>{
+            console.log(response)
+            setUsers((prevUsers) =>
+                prevUsers.map((user) =>
+                    user.id === id ? { ...user, is_active: user.is_active === 1 ? 0 : 1 } : user
+                )
+            );
+            toast.success('chinh sua thanh cong');
+        }).catch((error)=>{
+            console.log(error)
+        })
+    }
     return(
         <>
         <div className="container">
@@ -53,12 +77,13 @@ const ListUser = ()=>{
                                         <td>
                                             {user.role_id.name}
                                         </td>
-                                        <td>
-                                            {user.is_active}
+                                        <td style={{ color: user.is_active === 1 ? 'red' : 'black' }}>
+                                            {user.is_active===1 ? "khóa" : "khong khóa"}
                                         </td>
+
                                         <td>
-                                            <button>sua</button>
-                                            <button>xoa</button>
+                                            <button onClick={EditUser(user.id)}>sua</button>
+                                            <button onClick={()=>BanUser(user.id)}>{user.is_active ? "mo khoa": "khoa"}</button>
                                         </td>
                                     </tr>
 

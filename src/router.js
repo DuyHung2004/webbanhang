@@ -16,6 +16,14 @@ import AppHeader from "pages/admin/header/AppHeader";
 import MasterLayoutAdmin from "./pages/admin/masterLayoutAdmin";
 import ListUser from "pages/admin/listuser";
 import ListOrder from "pages/admin/orders"
+import ListProducts from "pages/admin/listproducts";
+import ListCategorys from "pages/admin/listcategorys";
+import CreateProduct from "pages/admin/addproduct";
+import EditProduct from "pages/admin/editproduct";
+import LoginAdmin from "pages/admin/login";
+import EditUser from "pages/admin/edituser";
+import CreateCategory from "pages/admin/addcategory";
+import EditOrder from "pages/admin/editorder";
 const renderUserRouter=()=>{
     const userRouters=[
         {
@@ -78,6 +86,27 @@ const renderAdminRouter = () => {
         },{
             path: ROUTERS.ADMIN.ORDER,
             component: <ListOrder />
+        },{
+            path: ROUTERS.ADMIN.PRODUCT,
+            component: <ListProducts/>
+        },{
+            path: ROUTERS.ADMIN.CATEGORY,
+            component: <ListCategorys />
+        },{
+            path: ROUTERS.ADMIN.ADDPRODUCT,
+            component: <CreateProduct />
+        },{
+            path: ROUTERS.ADMIN.EDITPRODUCT,
+            component: <EditProduct />
+        },{
+            path: ROUTERS.ADMIN.EDITUSER,
+            component: <EditUser />
+        },{
+            path: ROUTERS.ADMIN.ADDCATEGORY,
+            component: <CreateCategory />
+        },{
+            path: ROUTERS.ADMIN.EDITORDER,
+            component: <EditOrder />
         }
     ]
     return (
@@ -94,14 +123,36 @@ const renderAdminRouter = () => {
     );
 }
 
+const renderLoginAdmin=()=>{
+    const adminlogin=[
+        {
+            path: ROUTERS.ADMIN.LOGIN,
+            component: <LoginAdmin />
+        }
+    ]
+    return (
+        <Routes>
+            {
+                adminlogin.map((route,index)=>(
+                    <Route path={route.path} key={index} element={route.component} />
+                    
+                ))
+            }
+        </Routes>
+    );
+}
+
 const RouterCustom = () => {
     const location = useLocation();
+    const isLoginPath = location.pathname.startsWith("/adminlogin");
 
     const isAdminPath = location.pathname.startsWith("/admin"); 
 
     return (
         <>
-            {isAdminPath ? renderAdminRouter() : renderUserRouter()}
+            {isLoginPath ? renderLoginAdmin() : (
+            isAdminPath ? renderAdminRouter() : renderUserRouter())
+            }   
         </>
     );
 }

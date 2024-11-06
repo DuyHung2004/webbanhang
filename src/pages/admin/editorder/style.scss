@@ -1,0 +1,93 @@
+.form_edit{
+    font-size: 20px;
+    width: 40%;
+    margin: auto;
+    button{
+        margin: auto ;
+        margin-left: 60px;
+       padding: 20px;
+        border-radius: 5px;
+        background-color: cadetblue;
+        color: white;
+        cursor: pointer;
+       }
+    form{
+        display: flex;
+        flex-direction: column;
+        color: cadetblue;
+       .text_edit_product{
+        margin-bottom: 20px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+       }
+       .select_id{
+        text-align: center;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+       }
+       button{
+        margin: auto ;
+        width: 30%;
+        margin-top: 20px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: cadetblue;
+        color: white;
+        cursor: pointer;
+       }
+    }
+    .image_add{
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+    }
+    .table_cart{
+        overflow-y:auto ;
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        table{
+            width: 100%;
+            tr{
+                border-bottom: 1px solid #dddddd;
+                td{
+                    padding: 8px;
+                    text-align: center;
+                }
+            }
+            th{
+               border: 1px solid #dddddd;
+               padding: 8px;
+               text-align: center;
+            }
+            img{
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+            }
+            .button_remove{
+                cursor: pointer;
+            }
+        }
+        .button_continue{
+            display: flex;
+            text-align: center;
+            margin: auto;
+            border: 2px solid #dddddd;
+            width: 100px;
+            height: 50px;
+            margin-top: 50px;
+            background-color:cornflowerblue;
+            align-items: center;
+            justify-content: center;
+            a{
+                text-decoration: none;
+                font-size: 20px;
+            }
+        }
+       }
+}

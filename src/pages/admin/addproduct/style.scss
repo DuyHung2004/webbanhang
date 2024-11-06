@@ -1,8 +1,12 @@
-.form_edit_user{
+.form_add{
+    font-size: 20px;
+    width: 40%;
+    margin: auto;
+    form{
         display: flex;
         flex-direction: column;
         color: cadetblue;
-       .text_edit_user{
+       .text_add_product{
         margin-bottom: 20px;
         text-align: center;
         display: flex;
@@ -27,3 +31,4 @@
         cursor: pointer;
        }
     }
+}

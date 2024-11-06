@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { generatePath } from 'react-router-dom';
 const ListOrder = ()=>{
     const [orders,setOrders]= useState([])
     useEffect(()=>{
@@ -21,6 +22,10 @@ const ListOrder = ()=>{
             
         })
     },[])
+    const navigate = useNavigate();
+    const editorder=(id)=>{
+        navigate(`${generatePath(ROUTERS.ADMIN.EDITORDER, { id })}`);
+    }
     return(
         <>
         <div className="container">
@@ -43,7 +48,7 @@ const ListOrder = ()=>{
                         {
                             orders.length> 0 ?(
                                 orders.map((orders,key )=>(
-                                    <tr key={key} className="order_row">
+                                    <tr key={key} className="order_row" style={{ color: orders.status === "cancelled" ? 'red' : orders.status === "delivered" ? "green" : "black" }}>
                                         <td>
                                             {orders.tracking_number}
                                         </td>
@@ -72,8 +77,7 @@ const ListOrder = ()=>{
                                             {orders.payment_method}
                                         </td>
                                         <td>
-                                            <button>sua</button>
-                                            <button>xoa</button>
+                                            <button onClick={()=>editorder(orders.id)}>sua</button>
                                         </td>
                                     </tr>
 

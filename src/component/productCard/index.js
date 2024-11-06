@@ -5,6 +5,7 @@ import { generatePath, Link } from "react-router-dom";
 import "./style.scss";
 import { ROUTERS } from "utils/router";
 import { toast } from 'react-toastify';
+import Cookies from "js-cookie";
 
 const ProductsCard = ({ img, name, price, id }) => {
   const imageUrl = `http://localhost:8080/identity/api/v1/products/images/${img}`;
@@ -19,6 +20,7 @@ const ProductsCard = ({ img, name, price, id }) => {
   };
   const [cart, setCart] = useState(getCartFromLocalStorage);
   const addToCart = (product) => {
+    if(Cookies.get("token")){
     const currentCart = getCartFromLocalStorage();
 
     const existingProduct = currentCart.find((item) => item.id === product.id);
@@ -36,7 +38,7 @@ const ProductsCard = ({ img, name, price, id }) => {
     toast.success('Them san pham thanh cong, hay kiem tra gio hang');
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     setCart(updatedCart); 
-  };
+  }};
 
   useEffect(() => {
     setCart(getCartFromLocalStorage());

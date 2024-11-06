@@ -109,7 +109,7 @@ const Header = ()=>{
         Cookies.remove('token');
         localStorage.removeItem('cart');
         setIsLoggedIn(false);
-        navigate(ROUTERS.USER.HOME); 
+        setTimeout(() => navigate(ROUTERS.USER.HOME), 0); 
       }
 
     return (

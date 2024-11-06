@@ -44,7 +44,7 @@ const ProductDetailPage = ()=>{
         id: Number(id),
         name: name,
         price: Number(price),
-        imageUrl:`http://localhost:8080/identity/api/v1/products/images/${product.image_url}` , // Đảm bảo dùng đúng thuộc tính từ API
+        imageUrl:`http://localhost:8080/identity/api/v1/products/images/${product.image_url}` , 
         quantity: quantity
       };
       cart.push(productToAdd);  
