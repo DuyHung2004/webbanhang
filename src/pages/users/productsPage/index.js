@@ -4,6 +4,7 @@ import ProductsCard from '../../../component/productCard';
 import { useParams } from "react-router-dom";
 import axios from 'axios'; 
 import TokenChecker from "component/tokenCheck";
+import { useLocation } from "react-router-dom";
 
 const ProductsPage = ()=>{
     const sorts=[
@@ -12,19 +13,23 @@ const ProductsPage = ()=>{
         "Ban Chay Nhat"
     ]
         const { id } = useParams();  
+        const location = useLocation();
+        const queryParams = new URLSearchParams(location.search);
+        const keyy = queryParams.get("key");
+        const [keyword,setKeyword]=useState(keyy ? keyy : "")
         const [products, setProducts] = useState([]);
         const [currentPage, setCurrentPage] = useState(0);
         const [totalPages, setTotalPages] = useState(0);
         const itemsPerPage = 12;
       
         useEffect(() => {
-          axios.get(`http://localhost:8080/identity/api/v1/products?categoryId=${id}&limit=${itemsPerPage}&page=${currentPage}`)
+          axios.get(`http://localhost:8080/identity/api/v1/products?categoryId=${id}&limit=${itemsPerPage}&page=${currentPage}&keyword=${keyword}`)
             .then(response => {
                 console.log(response.data.listproduct)
                 setTotalPages(response.data.totalPages);
                 setProducts(response.data.listproduct )})
             .catch(error => console.error('Error fetching products:', error));
-        }, [id, currentPage]);
+        }, [id, currentPage,keyword]);
         const handlePageChange = (page) => {
             setCurrentPage(page);
           };
@@ -49,6 +54,7 @@ const ProductsPage = ()=>{
             }         
             return pages;
           };
+          
     return (
     <>
     <TokenChecker />
@@ -60,7 +66,7 @@ const ProductsPage = ()=>{
                             <h2>
                                 Tim kiem
                             </h2>
-                            <input type="text" placeholder="Search..." />
+                            <input  onChange={(e)=>setKeyword(e.target.value)} type="text" placeholder="Search..."  />
                         </div>
                         <div className="sidebar_item">
                             <h2>Muc Gia</h2>

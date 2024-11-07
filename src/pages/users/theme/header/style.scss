@@ -250,7 +250,7 @@ $bannerImg: "/assets/users/images/hero/dt2.png";
                 border: none;
             }
         }
-        button{
+        .submit{
             font-size: 14px;
             color: #b2b2b2;
             font-weight: 800;
@@ -259,6 +259,7 @@ $bannerImg: "/assets/users/images/hero/dt2.png";
             background: map.get($theme-colors,"main");
             border: none;
             height: 100%;
+            text-decoration: none;
         }
     }
     .hero_search_phone{

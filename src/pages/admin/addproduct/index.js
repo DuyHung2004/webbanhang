@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { ROUTERS } from 'utils/router';
 import { useNavigate } from "react-router-dom";
 import './style.scss';
+import TokenCheckerAdmin from 'component/tokenCheckadmin';
 function CreateProduct() {
   const [productName, setProductName] = useState('');
   const [price, setPrice] = useState('');
@@ -52,6 +53,8 @@ function CreateProduct() {
   };
 
   return (
+    <>
+    <TokenCheckerAdmin/>
     <div className='container'>
         <div className='form_add'>
     <form onSubmit={handleSubmit}>
@@ -104,6 +107,7 @@ function CreateProduct() {
     </form>
     </div>
     </div>
+    </>
   );
 }
 

@@ -84,7 +84,10 @@ const Header = ()=>{
         },
         {
             path: ROUTERS.USER.HISTORY,
-            name: "Lich su mua hang"
+            name: "Lich Su Mua Hang"
+        },{
+            path: ROUTERS.USER.PASS,
+            name: "Doi Mat Khau"
         }
     ]
 
@@ -111,7 +114,8 @@ const Header = ()=>{
         setIsLoggedIn(false);
         setTimeout(() => navigate(ROUTERS.USER.HOME), 0); 
       }
-
+      const [keyword,setKeyword]= useState("");
+      
     return (
         <>
         <div className="header_top">
@@ -268,8 +272,8 @@ const Header = ()=>{
                     <div className="hero_search">
                         <div className="hero_search_form">  
                             <form>
-                                <input type="text" placeholder="Tìm kiếm sản phẩm..." />
-                                <button type="submit" >Tìm kiếm</button>
+                                <input onChange={(e)=>setKeyword(e.target.value)} type="text" placeholder="Tìm kiếm sản phẩm..." />
+                                <Link to={`/category/0?key=${keyword}`} className="submit" >Tim Kiem</Link>
                             </form>
                         </div>
                         <div className="hero_search_phone">

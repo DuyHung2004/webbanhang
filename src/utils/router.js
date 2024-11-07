@@ -12,6 +12,7 @@ export const ROUTERS={
         PAYMENT:"/thanh-toan",
         HISTORY:"/history",
         ORDERDETAIL:"/don-hang/:id",
+        PASS:"/changepassword"
     },
     ADMIN:{
         LOGIN: "/adminlogin",

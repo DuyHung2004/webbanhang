@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { formatter } from "utils/fomater";
+import TokenCheckerAdmin from "component/tokenCheckadmin";
 const ListProducts = ()=>{
         const [id, useId]= useState(0)
         const [products, setProducts] = useState([]);
@@ -83,6 +84,7 @@ const ListProducts = ()=>{
           
     return(
         <>
+        <TokenCheckerAdmin />
         <div className="container">
             <div className="table_product">
           <button type="button" className="button_add" onClick={()=>forward()}>Them</button>

@@ -20,7 +20,6 @@ const ProductDetailPage = ()=>{
         axios.get(`http://localhost:8080/identity/api/v1/products/product/${id}`)
             .then(response => {
                 console.log(response.data.result)
-                console.log("gadsfg")
                 setProducts(response.data.result || [])
                 setProduct(`http://localhost:8080/identity/api/v1/products/images/${response.data.result[0].image_url}`)
             })
@@ -49,10 +48,21 @@ const ProductDetailPage = ()=>{
       };
       cart.push(productToAdd);  
     }
+
   
     localStorage.setItem('cart', JSON.stringify(cart));
   };
-  
+  const [prod,setProd]= useState({});
+  useEffect(()=>{
+    axios.get(`http://localhost:8080/identity/api/v1/products/${id}`)
+            .then(response => {
+                console.log(response.data.result)
+                setProd(response.data.result )
+            }).catch(error=>{
+                console.log(error);
+                
+            })
+  },[id])
 
   const handleAddToCart = (quantity) => {
     addToCart(products[0], quantity);
@@ -76,8 +86,8 @@ const ProductDetailPage = ()=>{
                 </div>
                 <div className="col-lg-6 product_detail_text">
                     <h2>{name}</h2>
-                    <h3>{formatter(20000000)}</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Vestibulum vel orci quis neque dignissim tempor. Donec vel enim nec felis hendrerit consectetur. Sed vel massa id turpis luctus congue. Sed vel velit auctor, malesuada tellus in, commodo ligula.</p>
+                    <h3>{formatter(prod.price)}</h3>
+                    <p>{prod.description}</p>
                     <Quantity onAddToCart={handleAddToCart}/>
                     <ul>
                         <li>

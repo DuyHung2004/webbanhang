@@ -24,6 +24,8 @@ import LoginAdmin from "pages/admin/login";
 import EditUser from "pages/admin/edituser";
 import CreateCategory from "pages/admin/addcategory";
 import EditOrder from "pages/admin/editorder";
+import ChangePassword from "pages/users/changepassword";
+import TokenCheckerAdmin from "component/tokenCheckadmin";
 const renderUserRouter=()=>{
     const userRouters=[
         {
@@ -62,6 +64,9 @@ const renderUserRouter=()=>{
         },{
             path: ROUTERS.USER.ORDERDETAIL,
             component: <OrderDetail />
+        },{
+            path: ROUTERS.USER.PASS,
+            component: <ChangePassword />
         },
     ]
     return (

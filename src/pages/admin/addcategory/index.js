@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { ROUTERS } from 'utils/router';
 import { useNavigate } from "react-router-dom";
 import './style.scss';
+import TokenCheckerAdmin from 'component/tokenCheckadmin';
 function CreateCategory() {
   const [category, setCategory] = useState('');
   const navigate = useNavigate();
@@ -27,6 +28,8 @@ function CreateCategory() {
   };
 
   return (
+    <>
+    <TokenCheckerAdmin/>
     <div className='container'>
         <div className='form_add'>
     <form onSubmit={handleSubmit}>
@@ -43,6 +46,7 @@ function CreateCategory() {
     </form>
     </div>
     </div>
+    </>
   );
 }
 

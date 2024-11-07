@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { ROUTERS } from 'utils/router';
 import { useNavigate, useParams } from "react-router-dom";
 import './style.scss';
+import TokenCheckerAdmin from 'component/tokenCheckadmin';
 function EditUser() {
   const [fullname, setFullname] = useState('');
   const [phonenumber, setPhonenumber] = useState('');
@@ -69,6 +70,8 @@ function EditUser() {
   };
 
   return (
+    <>
+    <TokenCheckerAdmin/>
     <div className='container'>
         <div className='form_edit'>
           <form onSubmit={handleSubmit}>
@@ -135,6 +138,7 @@ function EditUser() {
       </form>
     </div>
     </div>
+    </>
   );
 }
 

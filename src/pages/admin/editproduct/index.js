@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { ROUTERS } from 'utils/router';
 import { useNavigate, useParams } from "react-router-dom";
 import './style.scss';
+import TokenCheckerAdmin from 'component/tokenCheckadmin';
 function EditProduct() {
   const [productName, setProductName] = useState('');
   const [product, setProduct] = useState({});
@@ -104,6 +105,8 @@ function EditProduct() {
   };
 
   return (
+    <>
+    <TokenCheckerAdmin/>
     <div className='container'>
         <div className='form_edit'>
             <button onClick={()=>setIsActive(!is_active)}>{is_active ? "Chinh sua anh" : "chinh sua du lieu text"}</button>
@@ -190,6 +193,7 @@ function EditProduct() {
     )  }
     </div>
     </div>
+    </>
   );
 }
 

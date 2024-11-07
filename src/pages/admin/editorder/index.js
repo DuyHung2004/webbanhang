@@ -6,6 +6,7 @@ import { ROUTERS } from 'utils/router';
 import { useNavigate, useParams } from "react-router-dom";
 import './style.scss';
 import { formatter } from 'utils/fomater';
+import TokenCheckerAdmin from 'component/tokenCheckadmin';
 function EditOrder() {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
@@ -78,6 +79,8 @@ function EditOrder() {
   };
 
   return (
+    <>
+    <TokenCheckerAdmin/>
     <div className='container'>
         <div className='form_edit'>
    <form onSubmit={handleSubmit}>
@@ -207,6 +210,7 @@ function EditOrder() {
     </form>  
     </div>
     </div>
+    </>
   );
 }
 

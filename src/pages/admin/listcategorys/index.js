@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import TokenCheckerAdmin from "component/tokenCheckadmin";
 const ListCategorys = ()=>{
     const [categorys,setcategorys]= useState([])
     useEffect(()=>{
@@ -43,6 +44,7 @@ const ListCategorys = ()=>{
     }
     return(
         <>
+        <TokenCheckerAdmin />
         <div className="container">
             <div className="table_category">
             <button type="button" className="button_add" onClick={()=>forward()}>Them</button>

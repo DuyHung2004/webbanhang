@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import TokenCheckerAdmin from "component/tokenCheckadmin";
 const ListUser = ()=>{
     const [users,setUsers]= useState([])
     useEffect(()=>{
@@ -47,6 +48,7 @@ const ListUser = ()=>{
     }
     return(
         <>
+        <TokenCheckerAdmin />
         <div className="container">
             <div className="table_user">
                 <table>
