@@ -11,6 +11,7 @@ import Cookies from "js-cookie";
 import TokenChecker from "component/tokenCheck";
 import { Link } from "react-router-dom";
 import { formatter } from "utils/fomater";
+import { toast } from "react-toastify";
 
 const OrderDetail = () => {
   const navigate = useNavigate();
@@ -49,7 +50,24 @@ const OrderDetail = () => {
       console.log(err);
     })
   },[id])
-
+  const handleCancelOrder = async (event) => {
+    event.preventDefault();
+  try {
+    const response = await axios.delete(
+      `http://localhost:8080/identity/api/v1/orders/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${Cookies.get('token')}`,
+        },
+      }
+    );
+    toast.success("Huy don hang thanh cong");
+    navigate(0);
+  } catch (error) {
+    console.error(error);
+    alert("Hủy đơn hàng thất bại");
+  }
+};
   return (
     <>
     <TokenChecker />
@@ -97,6 +115,15 @@ const OrderDetail = () => {
           </tbody>
         </table>
           <p className="total_money_order">Tong Tien: {formatter( order.total_money)}</p>
+      </div>
+      <div className="buttonsb">
+        {order.status !== "success"&&  order.status !== "cancelled" && (
+  <form onSubmit={handleCancelOrder}>
+    <button type="submit">
+      HỦY ĐƠN HÀNG
+    </button>
+  </form>
+    )}
       </div>
     </div>
     </>

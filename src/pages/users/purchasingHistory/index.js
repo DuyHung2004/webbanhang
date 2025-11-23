@@ -45,6 +45,28 @@ const PurchasingHistory = () => {
   const orderdetail=(id)=>{
     navigate(generatePath(ROUTERS.USER.ORDERDETAIL,{id}))
   }
+  const getStatusColor = (status) => {
+  const colors = {
+    success: { backgroundColor: "#d1fae5", color: "#059669" },     
+    cancelled: { backgroundColor: "#fee2e2", color: "#dc2626" },  
+    pending: { backgroundColor: "#fef3c7", color: "#d97706" },     
+    shipped: { backgroundColor: "#dbeafe", color: "#2563eb" },    
+  };
+
+  return colors[status] || { backgroundColor: "#e5e7eb", color: "#374151" };
+};
+
+const getStatusText = (status) => {
+  const texts = {
+    success: "Thành công",
+    cancelled: "Đã hủy",
+    pending: "Chờ xác nhận",
+    shipped: "Đang giao",
+  };
+
+  return texts[status] || "Không xác định";
+};
+
   return (
     <>
     <TokenChecker />
@@ -69,7 +91,16 @@ const PurchasingHistory = () => {
                     <span>{formatter(order.total_money)} </span>
                   </td>
                   <td>
-                    <span>{order.status}</span>
+                    <span
+                          style={{
+                            ...getStatusColor(order.status),
+                            padding: "4px 10px",
+                            borderRadius: "12px",
+                            fontWeight: 600,
+                          }}
+                        >
+                          {getStatusText(order.status)}
+                        </span>
                   </td>
                 </tr>
               ))

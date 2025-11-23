@@ -40,7 +40,7 @@ function EditUser() {
         setRoles(response.data.result)
       })
      .catch(error => console.error('Error fetching categories:', error));
-  })
+  },[])
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();

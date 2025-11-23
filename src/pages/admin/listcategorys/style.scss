@@ -1,42 +1,79 @@
-.table_category{
-    margin-top: 30px;
-    margin:auto;
+.table_category {
+  margin-top: 30px;
+  width: 100%;
+  position: relative;
+
+  .button_add {
+    position: absolute;
+    right: 0;
+    top: -45px;
+    padding: 10px 18px;
+    background: #27ae60;
+    border: none;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.25s;
+
+    &:hover {
+      background: #1e8c4d;
+    }
+  }
+
+  table {
     width: 100%;
-    position: relative;
-    .button_add{
-        position: absolute;
-        right:0 ;
-        border-radius: 4px;
-        top:-40px;
-        padding: 10px 15px;
+    border-collapse: separate;
+    border-spacing: 0 12px; // tạo khoảng trống giữa các hàng
+
+    thead {
+      background: #f7f9fa;
+
+      th {
+        padding: 14px;
+        font-size: 17px;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-bottom: 2px solid #e0e4e5;
+      }
     }
-    table{
-        margin: auto;
-        width: 100%;
-        text-align: center;
-        position: relative;
-        .category_row{
-            button{
-                margin: 2px;
-            }
-            td{
-                padding: 8px;
-            }
-            position: relative;
+
+    tbody {
+      .category_row {
+        background: #ffffff;
+        border-radius: 14px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        transition: 0.25s ease;
         cursor: pointer;
-        &:hover{
-            background-color: #f2f2f2;
+        font-size: 17px;
+
+        &:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
         }
-        font-size: 20px;
+
+        td {
+          padding: 14px;
+          font-weight: 500;
         }
-        .category_row::after{
-            content: ""; 
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 1px; 
-            background-color: black; 
+
+        button {
+          padding: 7px 14px;
+          margin: 0 4px;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          font-weight: 600;
+          transition: 0.25s;
+
+          background: #e74c3c;
+          color: #fff;
+
+          &:hover {
+            background: #c0392b;
+          }
         }
+      }
     }
+  }
 }

@@ -12,15 +12,20 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 const ListUser = ()=>{
     const [users,setUsers]= useState([])
-    useEffect(()=>{
-        axios.get('http://localhost:8080/identity/users')
-        .then((response)=>{
-            setUsers(response.data.result)
-        }).catch((error)=>{
-            console.log(error);
-            
-        })
-    },[])
+   useEffect(() => {
+    const token = Cookies.get("token"); 
+    axios.get('http://localhost:8080/identity/users', {
+      headers: {
+        Authorization: `Bearer ${token}` 
+      }
+    })
+    .then((response) => {
+      setUsers(response.data.result);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }, []);
     const navigate = useNavigate();
     const EditUser=(id)=>{
         return ()=>{

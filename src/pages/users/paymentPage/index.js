@@ -29,6 +29,8 @@ const PaymentPage = () => {
     shipping_address:"",
     payment_method:"",
 });
+  const [open, setOpen] = useState(false);
+  const [openPayment, setOpenPayment] = useState(false);
 const handleChange = (e) => {
   const { id, name, value } = e.target;
   setFormData((prevData) => ({
@@ -70,22 +72,31 @@ const handleSubmit = async (e) => {
             },
           }
     );
-        console.log(response.data.result.id);
-        products.forEach(element => {
-          handleSubmit2(element,response.data.result.id)
-        }
-      );
-      localStorage.removeItem('cart')
+        if (formData.payment_method === "COD") {
+      products.forEach(element => {
+        handleSubmit2(element, response.data.result.id);
+      });
+      localStorage.removeItem('cart');
       navigate(ROUTERS.USER.HOME);
-      toast.success('Dat Hang Thanh Cong'); 
-      } catch (error) {
-        if (error.response && error.response.data) {
-            console.log(error.response.data.code);
-        } else {
-        }
+      toast.success('Đặt hàng thành công');
+    } else if (formData.payment_method === "VNPAY") {
+      const paymentUrl = response.data.data;
+      products.forEach(element => {
+        handleSubmit2(element, response.data.user_id);
+      });
+      localStorage.removeItem('cart');
+      if (paymentUrl) {
+        window.location.href = paymentUrl; 
+      } else {
+        toast.error("Không tìm thấy link thanh toán VNPAY");
       }
-    };
-  
+    }
+  } catch (error) {
+    if (error.response && error.response.data) {
+      console.log(error.response.data.code);
+    }
+  }
+};
   useEffect(() => {
     const token = Cookies.get('token');
     if (!token) {
@@ -103,6 +114,33 @@ const handleSubmit = async (e) => {
       navigate(ROUTERS.USER.HOME);
     }
   }, [navigate]);
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const res = await axios.get("http://localhost:8080/identity/users/myinfo", {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("token")}`,
+          },
+        });
+
+        if (res.data.code === 1000) {
+          const u = res.data.result;
+
+          setFormData((prev) => ({
+            ...prev,
+            fullname: u.fullname || "",
+            phone_number: u.phonenumber || "",
+            address: u.address || "",
+            shipping_address: u.address || "",
+          }));
+        }
+      } catch (error) {
+        console.log("Fetch user info error:", error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
   return (
     <>
     <TokenChecker />
@@ -159,49 +197,115 @@ const handleSubmit = async (e) => {
           </tbody>
         </table>
       </div>
-      <div> 
+      <div className="formsb"> 
         <form onSubmit={handleSubmit} >
           <div className="form_order">
-            <label htmlFor="fullname" >ten nguoi nhan</label> 
-            <input onChange={handleChange} type="text" id="fullname"/>
-          </div>
+              <label htmlFor="fullname">Tên người nhận</label>
+              <input
+                id="fullname"
+                type="text"
+                value={formData.fullname}
+                onChange={handleChange}
+              />
+            </div>
           <div className="form_order">
-            <label htmlFor="phone_number" >so dien thoai nhan hang</label>
-            <input onChange={handleChange} type="text" id="phone_number"/>
-          </div>
-          <div className="form_order">
-            <label htmlFor="address" >quan, huyen- thanh pho</label>
+              <label htmlFor="phone_number">Số điện thoại nhận hàng</label>
+              <input
+                id="phone_number"
+                type="text"
+                value={formData.phone_number}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form_order">
+            <label htmlFor="address" >Quận, huyện - thành phố</label>
             <input onChange={handleChange} type="text" id="address"/>
           </div>
           <div className="form_order">
-            <label htmlFor="note" >ghi chu</label>
-            <input onChange={handleChange} type="text" id="note"/>
-          </div>
-          <div>
-          <label>
-            <input onChange={handleChange} checked={formData.shipping_method === "economy"} type="radio" name="shipping_method" value="economy" />
-            Giao hàng tiết kiệm
-          </label><br/>
-
-          <label>
-            <input onChange={handleChange} type="radio" checked={formData.shipping_method === "express"} name="shipping_method" value="express" />
-            Giao hàng nhanh
-          </label>
-          </div>
+              <label htmlFor="shipping_address">Địa chỉ chi tiết</label>
+              <input
+                id="shipping_address"
+                type="text"
+                value={formData.shipping_address}
+                onChange={handleChange}
+              />
+            </div>
           <div className="form_order">
-            <label htmlFor="shipping_address" >dia chi chi tiet</label>
-            <input onChange={handleChange} type="text" id="shipping_address"/>
-          </div>
-          <div>
-          <label>
-            <input onChange={handleChange} type="radio" name="payment_method" value="cod" checked={formData.payment_method === "cod"}  />
-            thanh toan khi nhan hang
-          </label><br/>
-          <label>
-            <input onChange={handleChange} type="radio" name="payment_method" value="transfer" checked={formData.payment_method === "transfer"} />
-            thanh toan chuyen khoan
-          </label>
-          </div>
+              <label htmlFor="note">Ghi chú</label>
+              <input
+                id="note"
+                type="text"
+                value={formData.note}
+                onChange={handleChange}
+              />
+            </div>
+          <div className="form_order">
+  <label>Phương thức giao hàng</label>
+  <div className="select_box" onClick={() => setOpen(!open)}>
+    {formData.shipping_method === "" ? "Chọn phương thức" : formData.shipping_method === "economy" ? "Giao hàng tiết kiệm" : "Giao hàng nhanh"}
+    <span className="arrow">▼</span>
+  </div>
+
+  {open && (
+    <div className="select_options">
+      <div
+        className="option"
+        onClick={() => {
+          handleChange({ target: { name: "shipping_method", value: "economy" } });
+          setOpen(false);
+        }}
+      >
+        Giao hàng tiết kiệm
+      </div>
+
+      <div
+        className="option"
+        onClick={() => {
+          handleChange({ target: { name: "shipping_method", value: "express" } });
+          setOpen(false);
+        }}
+      >
+        Giao hàng nhanh
+      </div>
+    </div>
+  )}
+</div>
+          <div className="form_order">
+  <label>Phương thức thanh toán</label>
+
+  <div className="select_box" onClick={() => setOpenPayment(!openPayment)}>
+    {formData.payment_method === ""
+      ? "Chọn phương thức thanh toán"
+      : formData.payment_method === "COD"
+        ? "Thanh toán khi nhận hàng"
+        : "Thanh toán VNPAY"}
+    <span className="arrow">▼</span>
+  </div>
+
+  {openPayment && (
+    <div className="select_options">
+      <div
+        className="option"
+        onClick={() => {
+          handleChange({ target: { name: "payment_method", value: "COD" } });
+          setOpenPayment(false);
+        }}
+      >
+        Thanh toán khi nhận hàng (COD)
+      </div>
+
+      <div
+        className="option"
+        onClick={() => {
+          handleChange({ target: { name: "payment_method", value: "VNPAY" } });
+          setOpenPayment(false);
+        }}
+      >
+        Thanh toán VNPAY
+      </div>
+    </div>
+  )}
+</div>
         <button type="submit" >Dat Hang</button>
         </form>
       </div>

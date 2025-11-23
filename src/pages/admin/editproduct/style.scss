@@ -1,48 +1,147 @@
-.form_edit{
-    font-size: 20px;
-    width: 40%;
-    margin: auto;
-    button{
-        margin: auto ;
-        margin-left: 60px;
-       padding: 20px;
-        border-radius: 5px;
-        background-color: cadetblue;
-        color: white;
-        cursor: pointer;
-       }
-    form{
-        display: flex;
-        flex-direction: column;
-        color: cadetblue;
-       .text_edit_product{
-        margin-bottom: 20px;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-       }
-       .select_id{
-        text-align: center;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-       }
-       button{
-        margin: auto ;
-        width: 30%;
-        margin-top: 20px;
-        padding: 10px 20px;
-        border-radius: 5px;
-        background-color: cadetblue;
-        color: white;
-        cursor: pointer;
-       }
+.form_edit {
+  font-size: 16px;
+  width: 50%;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  button.toggle_btn {
+    display: block;
+    margin: 0 auto 30px auto;
+    padding: 12px 25px;
+    border-radius: 8px;
+    background-color: #4a90e2;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #357abd;
     }
-    .image_add{
-        margin-top: 30px;
-        display: flex;
-        align-items: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: #333;
+
+    .text_edit_product,
+    .select_id {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      label {
+        font-weight: 500;
+        width: 35%;
+        text-align: right;
+        margin-right: 15px;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 65%;
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        outline: none;
+
+        &:focus {
+          border-color: #4a90e2;
+          box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
+        }
+      }
+
+      textarea {
+        min-height: 80px;
+        resize: vertical;
+      }
     }
+
+    button.submit_btn {
+      width: 40%;
+      margin: 0 auto;
+      padding: 12px 0;
+      border-radius: 8px;
+      background-color: #4a90e2;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #357abd;
+      }
+    }
+  }
+
+  // Hình ảnh
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+
+    th,
+    td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    button {
+      padding: 6px 12px;
+      border-radius: 6px;
+      background-color: #e74c3c;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #c0392b;
+      }
+    }
+  }
+
+  .image_add {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    label {
+      font-weight: 500;
+    }
+
+    input[type='file'] {
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    button.add_btn {
+      padding: 10px 20px;
+      border-radius: 6px;
+      background-color: #27ae60;
+      color: #fff;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #1e8449;
+      }
+    }
+  }
 }

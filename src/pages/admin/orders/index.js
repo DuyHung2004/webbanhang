@@ -48,7 +48,7 @@ const ListOrder = ()=>{
                         {
                             orders.length> 0 ?(
                                 orders.map((orders,key )=>(
-                                    <tr key={key} className="order_row" style={{ color: orders.status === "cancelled" ? 'red' : orders.status === "delivered" ? "green" : "black" }}>
+                                    <tr key={key} className={`order_row status-${orders.status}`}>
                                         <td>
                                             {orders.tracking_number}
                                         </td>

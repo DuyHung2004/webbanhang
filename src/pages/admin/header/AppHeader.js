@@ -30,23 +30,13 @@ const AppHeader = () => {
       <div className="tab-bar">
         {tabs.map(tab => (
           <div
-            key={tab.key}
-            className="tab"
-            onClick={() => handleClick(tab.key,tab.path)}
-            style={{
-              backgroundColor: tab.selected ? '#E7ECEA' : '#DDE2E0',
-              borderTop: tab.selected ? 'solid 4px #57C185' : 'none'
-            }}
-          >
-            <i className={tab.icon} style={{
-              color: tab.selected ? '#57C185' : '#576574',
-              fontSize: '2em',
-              marginTop: '5%'
-            }}></i>
-            <p style={{
-              color: tab.selected ? '#57C185' : '#576574'
-            }}>{tab.text}</p>
-          </div>
+  key={tab.key}
+  className={`tab ${current === tab.key ? "active" : ""}`}
+  onClick={() => handleClick(tab.key, tab.path)}
+>
+  <i className={tab.icon}></i>
+  <p>{tab.text}</p>
+</div>
         ))}
       </div>
     </div>

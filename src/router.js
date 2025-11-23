@@ -24,6 +24,7 @@ import LoginAdmin from "pages/admin/login";
 import EditUser from "pages/admin/edituser";
 import CreateCategory from "pages/admin/addcategory";
 import EditOrder from "pages/admin/editorder";
+import ProtectedRoute from "./component/ProtectedRoute";
 const renderUserRouter=()=>{
     const userRouters=[
         {
@@ -110,16 +111,15 @@ const renderAdminRouter = () => {
         }
     ]
     return (
-        <MasterLayoutAdmin>
-        <Routes>
-            {
-                adminRouters.map((route,index)=>(
-                    <Route path={route.path} key={index} element={route.component} />
-                    
-                ))
-            }
-        </Routes>
-        </MasterLayoutAdmin>
+         <ProtectedRoute>
+            <MasterLayoutAdmin>
+                <Routes>
+                    {adminRouters.map((route, index) => (
+                        <Route path={route.path} key={index} element={route.component} />
+                    ))}
+                </Routes>
+            </MasterLayoutAdmin>
+        </ProtectedRoute>
     );
 }
 

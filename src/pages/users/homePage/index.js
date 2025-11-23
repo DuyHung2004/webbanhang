@@ -10,11 +10,12 @@ import banner1 from "assets/users/images/featured/banner1.jpg";
 import banner2 from "assets/users/images/featured/banner2.jpg";
 import "./style.scss";
 import ProductsCard from '../../../component/productCard';
-
+import { toast } from 'react-toastify';
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { AiOutlineEye, AiOutlineShopping, AiOutlineShoppingCart } from "react-icons/ai";
 import { formatter } from "utils/fomater";
 import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import TokenChecker from "component/tokenCheck";
 import axios from "axios";
 
@@ -92,7 +93,24 @@ const HomePage = ()=>{
           bgImg: taiNghe
         },
       ]
+      const location = useLocation();
+const navigate = useNavigate();
 
+useEffect(() => {
+  const query = new URLSearchParams(location.search);
+  const status = query.get("status");
+  const amount = query.get("amount");
+
+  if (status === "success") {
+    toast.success("Thanh toán thành công! Số tiền: " + amount + " VND");
+    navigate("/", { replace: true });
+  }
+
+  if (status === "fail") {
+    toast.error("Thanh toán thất bại!");
+    navigate("/", { replace: true });
+  }
+}, [location.search, navigate]);
       
 
       const renderFeaturedProperties=(data)=>{
